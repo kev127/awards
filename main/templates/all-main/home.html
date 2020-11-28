@@ -8,7 +8,7 @@
 
     <h1 style="font-size:70px; color:rgb(138, 29, 38); font-family: 'Times New Roman', Times, serif;">Welcome to awwards</h1>
   </div>
-    <!-- <button type="button" class="btn btn-info btn-rounded">Info</button> -->
+    <button type="button" class="btn btn-info btn-rounded">Info</button>
     <a href="" class="btn btn-info btn-rounded" target="_blank">view Page</a>
   </div>
 
@@ -35,7 +35,7 @@
               <p class="card-text"><b>project description:</b>{{project.description}}</p>
             
               <hr>
-              <span><a href="profile"> <img src="{{project.avatar }}" alt="image"></a>By
+              <span><a href="{{profile}}"> <img src="{{project.avatar }}" alt="image"></a>
                 <b>{{project.author}}</b></span>
 
 
@@ -52,5 +52,3 @@
   </div>
 
 </div>
-
-{%endblock%}

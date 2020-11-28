@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'bootstrap3',
     'tinymce',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [

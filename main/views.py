@@ -31,7 +31,7 @@ def home(request):
         json_projects.append(obj)
         # print(json_projects)
     
-    return render(request, 'home.html', {"json_projects": json_projects})
+    return render(request, 'all-main/home.html', {"json_projects": json_projects})
 
 def register(request):
     if request.method == 'POST':
@@ -39,7 +39,7 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
+            password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('home')
@@ -65,7 +65,7 @@ def profile(request):
         'user_form': user_form,
         'profile_form': profile_form
     }
-    return render(request, 'profile.html', context)
+    return render(request, 'all-main/profile.html', context)
 
 
 @login_required(login_url='/accounts/login/')
