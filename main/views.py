@@ -56,8 +56,6 @@ def profile(request):
         if user_form.is_valid and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request,f'Your account has been updated successfully!')
-            return redirect('profile')
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
@@ -91,9 +89,7 @@ def update_profile(request):
 
         }
 
-    return render(request, 'update_profile.html', context)
-
-
+    return render(request, 'all-main/update_profile.html', context)
 
 @login_required(login_url='/accounts/login/')
 def new_project(request):
@@ -107,8 +103,6 @@ def new_project(request):
            
             image.save()
             
-        return redirect('home')
-
     else:
         form = NewProjectForm()
     return render(request, 'all-main/new_project.html', {"form": form})
@@ -125,4 +119,4 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
 
-        return render(request,'search.html',{'message':message})
+        return render(request,'all-main/search.html',{'message':message})
