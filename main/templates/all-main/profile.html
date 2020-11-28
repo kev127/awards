@@ -1,0 +1,38 @@
+{% extends 'all-main/base.html' %}
+{% load bootstrap3 %}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="col-sm-6 m-auto card">
+    <div class=" content-section container" style="padding-top: 100px;">
+    <div class="media">
+        <div class="col-sm-4">
+            <div style="width: 150px; height:150px; overflow:hidden; border-radius:50%" class="img-wrapper">
+                <img width="50%" height="50%" src="{{user.profile_pic}}" alt="profile">
+            </div>
+        </div>
+        <div class="media-body">
+            <h2 class="account-heading">{{user.username}}</h2>
+            <p class="text-secondary">{{user.email}}</p>
+            <p>{{user.profile.bio}}</p>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data" >
+            {%csrf_token%}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Profile info</legend>
+                {{ user_form|crispy }}
+                {{ profile_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">update</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+</div>
+{%endblock content%}
