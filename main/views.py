@@ -111,7 +111,7 @@ def new_project(request):
 
     else:
         form = NewProjectForm()
-    return render(request, 'new_project.html', {"form": form})
+    return render(request, 'all-main/new_project.html', {"form": form})
 
 
 def search_results(request):
