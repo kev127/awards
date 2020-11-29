@@ -23,7 +23,6 @@ def home(request):
             link=project.link,
             description=project.description,
             avatar=pic,
-            date_craeted=project.date_craeted,
             author=project.user.username  
                  
 

@@ -1,54 +1,51 @@
-{% extends 'all-main/base.html' %}
+{%extends 'all-main/base.html'%} 
+{%block content%}
 {{ block.super}}
 
-<div>
+    <div class="container-fluid">
+        <h1 style="font-size:70px; color:rgb(138, 29, 38); font-family: 'Times New Roman', Times, serif;">Welcome to awwards</h1>
 
-  <div class="container-fluid">
-    
+        <div class="container-fluid">
+            <div class="row">
+            {% for project in json_projects %}
+            <div class="col-md-4">
+                <div class="card-group">
+                <div class="card card-personal mb-4">
+                    <div class="view">
+                    <img class="card-img-top" src="{{project.url}}" alt="{{project.title}}">
+                    <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                    </div>
 
-    <h1 style="font-size:70px; color:rgb(138, 29, 38); font-family: 'Times New Roman', Times, serif;">Welcome to awwards</h1>
-  </div>
-    <button type="button" class="btn btn-info btn-rounded">Info</button>
-    <a href="" class="btn btn-info btn-rounded" target="_blank">view Page</a>
-  </div>
+                    <div class="card-body">
+                    <h3>{{project.title}}</h3>
+
+                    <a href="{{project.link}}" target="_blank">view site</a>
+
+                    <p class="card-text"><b>project description:</b>{{project.description}}</p>
+                    
+                    <hr>
+                        <b>{{project.author}}</b></span>
+                        <a href="{% url 'rating' project.id%}"><button type="submit" class="btn btn-success btn-lg">Rate</button></a><br>
+
+                        <h4><strong>Design:</strong>{{project.design }}</h4>
+                        <h4><strong>Usability:</strong>{{project.usability}}</h4>
+                        <h4><strong>Content:</strong>{{project.content}}</h4>
+                        <h4><strong>Average:</strong>{{rating}}</span></h4>
+                 
+
+                 <a href="{% url 'new-comment' project.id%}"><button type="submit" class="btn btn-primary">Comment</button></a>
 
 
-  <br><br>
-  <div class="container-fluid">
-    <div class="row">
-      {% for project in json_projects %}
-      <div class="col-md-4">
-        <div class="card-group">
-          <div class="card card-personal mb-4">
-            <div class="view">
-              <img class="card-img-top" src="{{project.image.url}}" alt="Card image cap">
-              <a href="#!">
-                <div class="mask rgba-white-slight"></div>
-              </a>
+                    </div>
+                </div>
+                </div>
+
+
             </div>
+            {% endfor %}
 
-            <div class="card-body">
-              <h3>{{project.title}}</h3>
-
-              <a href="{{project.link}}" target="_blank">view site</a>
-
-              <p class="card-text"><b>project description:</b>{{project.description}}</p>
-            
-              <hr>
-              <span><a href="{{profile}}"> <img src="{{project.avatar }}" alt="image"></a>
-                <b>{{project.author}}</b></span>
-
-
-            </div>
-          </div>
         </div>
-
-
-      </div>
-      {% endfor %}
-
     </div>
-
-  </div>
-
-</div>
+{%endblock%}
