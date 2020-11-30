@@ -44,7 +44,7 @@ def register(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'registration/registration_form.html', {'form': form, 'user':user})
+    return render(request, 'registration/registration_form.html', {'form': form})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
