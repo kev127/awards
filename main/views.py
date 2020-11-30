@@ -146,4 +146,4 @@ def rating(request,id):
             return redirect('welcome')
     else:
         form = VoteForm()
-    return render(request,'users/vote.html',{'form':form,'project':project,'rating':rating})    
+    return render(request,'all-main/rating.html',{'form':form,'project':project,'rating':rating})    
