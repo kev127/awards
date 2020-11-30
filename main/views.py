@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import Project, UserUpdateForm, ProfileUpdateForm, SignUpForm, NewProjectForm
+from .forms import UserUpdateForm, ProfileUpdateForm, SignUpForm, NewProjectForm
 from .models import Profile, Project
 from django.contrib.auth.decorators import login_required
 
@@ -14,7 +14,7 @@ def home(request):
 
         pic = Profile.objects.filter(user=project.user.id).first()
         if pic:
-            pic = pic.profile_pic.url
+            pic = pic.profile_pic
         else:
             pic =''
         obj = dict(
@@ -23,8 +23,7 @@ def home(request):
             link=project.link,
             description=project.description,
             avatar=pic,
-            author=project.user.username  
-                 
+            author=project.user.username,
 
         )
         json_projects.append(obj)
@@ -144,7 +143,7 @@ def rating(request,id):
             else:
                 project.content = (project.design + int(request.POST['content']))/2
             project.save()
-            return redirect('home')
+            return redirect('welcome')
     else:
         form = VoteForm()
-    return render(request,'all-main/ratings.html',{'form':form,'project':project,'rating':rating})    
+    return render(request,'users/vote.html',{'form':form,'project':project,'rating':rating})    

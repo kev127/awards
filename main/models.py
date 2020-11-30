@@ -11,7 +11,11 @@ class Project(models.Model):
     link= models.URLField(max_length=200)
     description = models.TextField(max_length=300)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default='', null=True ,related_name='author')
-    date_craeted= models.DateField(auto_now_add=True )
+    comments=models.CharField(max_length=100, blank=True)
+    design=models.IntegerField(choices=list(zip(range(0,11), range(0,11))),default=0)
+    usability=models.IntegerField(choices=list(zip(range(0,11), range(0,11))),default=0)
+    content=models.IntegerField(choices=list(zip(range(0,11), range(0,11))),default=0)
+    vote=models.IntegerField(default=0)
     
 
 
@@ -28,9 +32,6 @@ class Project(models.Model):
     def search_by_title(cls,search_term):
         projects = cls.objects.filter(title__contains=search_term)
         return projects
-
-
-     
 
     def __str__(self):
         return self.title

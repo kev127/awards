@@ -35,4 +35,4 @@ class  NewProjectForm(forms.ModelForm):
 class VoteForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('design','usability','content')
+        fields = ['design','usability','content']
