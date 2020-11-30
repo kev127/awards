@@ -27,12 +27,12 @@
                     
                     <hr>
                         <b>{{project.author}}</b></span>
-                        <a href=""><button type="submit" class="btn btn-success btn-lg">Rate</button></a><br>
+                        <a href="{% url 'rating'%}"></a>
 
-                        <h4><strong>Design:</strong>{{project.design }}</h4>
-                        <h4><strong>Usability:</strong>{{project.usability}}</h4>
-                        <h4><strong>Content:</strong>{{project.content}}</h4>
-                        <h4><strong>Average:</strong>{{rating}}</span></h4>
+                        <h5><strong>Design:</strong>{{project.design }}</h5>
+                        <h5><strong>Usability:</strong>{{project.usability}}</h5>
+                        <h5><strong>Content:</strong>{{project.content}}</h5>
+                        <h5><strong>Average:</strong>{{rating}}</span></h5>
                  
 
                  <a href=" "><button type="submit" class="btn btn-primary">Comment</button></a>
