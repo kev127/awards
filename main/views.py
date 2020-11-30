@@ -119,3 +119,32 @@ def search_results(request):
         message = "You haven't searched for any term"
 
         return render(request,'all-main/search.html',{'message':message})
+
+@login_required(login_url='/accounts/login/')
+def rating(request,id):
+    
+    project=Project.objects.get(id=id)
+    rating=round(((project.design + project.usability + project.content)/3),1)
+    if request.method == 'POST':
+        form=VoteForm(request.POST)
+        if form.is_valid:
+            project.vote+=1
+            if project.design ==0:
+                project.design = int(request.POST['design'])
+
+            else:
+                project.design = (project.design + int(request.POST['design']))/2
+
+            if project.usability == 0:
+                project.usability = int(request.POST['usability'])
+            else:
+                project.usability = (project.design + int(request.POST['usability']))/2
+            if project.content == 0:
+                project.content = int(request.POST['content'])
+            else:
+                project.content = (project.design + int(request.POST['content']))/2
+            project.save()
+            return redirect('home')
+    else:
+        form = VoteForm()
+    return render(request,'all-main/ratings.html',{'form':form,'project':project,'rating':rating})    

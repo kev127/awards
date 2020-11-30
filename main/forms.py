@@ -31,3 +31,8 @@ class  NewProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         exclude = ['user',]
+
+class VoteForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('design','usability','content')
