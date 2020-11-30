@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import UserUpdateForm, ProfileUpdateForm, SignUpForm, NewProjectForm, VoteForm
 from .models import Profile, Project, Comment
 from django.contrib.auth.decorators import login_required
+ from django.contrib.auth import authenticate, login
 
 def welcome(request):
     return render(request, 'welcome.html')
@@ -43,7 +44,7 @@ def register(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'registration/registration_form.html', {'form': form})
+    return render(request, 'registration/registration_form.html', {'form': form, 'user':user})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
