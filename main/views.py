@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import UserUpdateForm, ProfileUpdateForm, SignUpForm, NewProjectForm, VoteForm
 from .models import Profile, Project, Comment
 from django.contrib.auth.decorators import login_required
- from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login
 
 def welcome(request):
     return render(request, 'welcome.html')
