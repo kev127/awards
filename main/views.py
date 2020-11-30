@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import UserUpdateForm, ProfileUpdateForm, SignUpForm, NewProjectForm
-from .models import Profile, Project
+from .forms import UserUpdateForm, ProfileUpdateForm, SignUpForm, NewProjectForm, VoteForm
+from .models import Profile, Project, Comment
 from django.contrib.auth.decorators import login_required
 
 def welcome(request):
@@ -161,7 +161,7 @@ def comment(request, project_id):
             comment.project=project
             comment.save()
             
-            return redirect('welcome')
+            return redirect('new_project')
 
     else:
         form = NewCommentForm()

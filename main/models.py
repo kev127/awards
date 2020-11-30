@@ -11,7 +11,6 @@ class Project(models.Model):
     link= models.URLField(max_length=200)
     description = models.TextField(max_length=300)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default='', null=True ,related_name='author')
-    comments=models.CharField(max_length=100, blank=True)
     design=models.IntegerField(choices=list(zip(range(0,11), range(0,11))),default=0)
     usability=models.IntegerField(choices=list(zip(range(0,11), range(0,11))),default=0)
     content=models.IntegerField(choices=list(zip(range(0,11), range(0,11))),default=0)
@@ -51,6 +50,23 @@ class Profile(models.Model):
     def delete_user(self):
         self.delete()
     
+class Comment(models.Model):
+    comment = models.CharField(max_length=100, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
+    def update_comment(self):
+        self.update()
+
+    def __str__(self):
+        return self.comment
 
 
 @receiver(post_save, sender=User)

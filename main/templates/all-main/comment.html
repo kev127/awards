@@ -1,0 +1,19 @@
+{% extends 'all-main/base.html' %}
+{% load bootstrap3 %}
+
+
+{%block content%}
+<div class="container">
+    <h3 class="text-center" style="font-weight: bold;">Comment</h3>
+    <div class="col" style="background-color: rgb(214, 218, 240);">
+        <form action="{%url 'comment'%}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+
+            {% bootstrap_form form%}
+            <input type="submit" class="btn btn-info btn-lg btn-center" value="Post">
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
